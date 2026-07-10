@@ -10,4 +10,74 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #05070d; /* fallback while image loads */
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+/* Global app root receives the background image and an overlay */
+.app-root {
+  position: relative;
+  min-height: 100vh;
+  background-image: url('./assets/backgrounds/inteligente11-background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.app-root::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(rgba(5,8,18,0.82), rgba(5,8,18,0.88));
+  z-index: 0;
+}
+
+/* Keep content above overlay */
+.app-root > .app-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure sections are transparent so the global background shows through */
+section {
+  background: transparent;
+}
+
+/* Animations used across sections */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 0 rgba(34,211,238,0); filter: drop-shadow(0 0 0 rgba(168,85,247,0)); }
+  50% { box-shadow: 0 30px 90px rgba(34,211,238,0.06); filter: drop-shadow(0 30px 90px rgba(168,85,247,0.04)); }
+  100% { box-shadow: 0 0 0 rgba(34,211,238,0); filter: drop-shadow(0 0 0 rgba(168,85,247,0)); }
+}
+
+@keyframes hoverLift {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-6px); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

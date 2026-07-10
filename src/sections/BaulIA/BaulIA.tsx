@@ -1,140 +1,146 @@
-const featured = {
-  title: "Generador de Ideas IA",
-  subtitle: "Convertí una idea en un negocio real utilizando inteligencia artificial.",
-  badge: "⭐ Destacado",
-  description:
-    "Una experiencia premium para transformar ideas sueltas en oportunidades con IA aplicada a negocios reales.",
+import { useRef } from "react";
+
+type BaulApp = {
+  id: string;
+  title: string;
+  category: string;
+  state: string;
+  description: string;
+  primary: string;
+  secondary: string;
+  icon: string;
 };
 
-const cards = [
+const apps: BaulApp[] = [
   {
-    title: "Textos para WhatsApp",
-    description: "Respuestas, seguimientos y mensajes listos para vender mejor.",
-    tag: "Ventas",
-    badge: "Popular",
+    id: "ideas",
+    title: "Generador de ideas",
+    category: "Negocios",
+    state: "Gratis",
+    description: "Convertí una idea suelta en una oportunidad concreta.",
+    primary: "Usar app",
+    secondary: "Ver tutorial",
+    icon: "💡",
   },
   {
+    id: "validador",
     title: "Validador de negocios",
+    category: "Negocios",
+    state: "Nuevo",
     description: "Analizá si una idea tiene potencial antes de perder tiempo.",
-    tag: "Emprendedores",
-    badge: "IA",
+    primary: "Usar app",
+    secondary: "Ver tutorial",
+    icon: "✅",
   },
   {
-    title: "Prompts para emprendedores",
-    description: "Prompts claros para marketing, ventas, contenido y atención.",
-    tag: "Prompts",
-    badge: "Nuevo",
-  },
-  {
-    title: "Automatizaciones simples",
-    description: "Flujos básicos con IA para ahorrar horas de trabajo.",
-    tag: "Automatización",
-    badge: "Gratis",
-  },
-  {
+    id: "calendario",
     title: "Calendario de contenido",
-    description: "Ideas de publicaciones para redes sin quedarte bloqueado.",
-    tag: "Contenido",
-    badge: "Popular",
+    category: "Contenido",
+    state: "Próximamente",
+    description: "Organizá ideas de publicaciones para redes sin bloquearte.",
+    primary: "Ver app",
+    secondary: "Ver tutorial",
+    icon: "📆",
+  },
+  {
+    id: "prompts",
+    title: "Generador de prompts",
+    category: "Prompts",
+    state: "Gratis",
+    description: "Prompts claros para marketing, ventas, contenido y atención.",
+    primary: "Usar app",
+    secondary: "Ver tutorial",
+    icon: "⚙️",
   },
 ];
 
+const categories = ["Todos", "Negocios", "Contenido", "Prompts"];
+
 function BaulIA() {
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollBy = (distance: number) => {
+    if (!carouselRef.current) return;
+    carouselRef.current.scrollBy({ left: distance, behavior: "smooth" });
+  };
+
   return (
-    <section id="baul" className="bg-[#030712] px-4 py-20 text-white sm:px-6 lg:px-8">
+    <section id="baul" className="bg-[#05060a] px-4 py-16 text-white sm:px-6 lg:px-8 animate-[fadeInUp_0.9s_ease-out_0.08s_both]">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-12 max-w-4xl text-center">
-          <p className="text-sm uppercase tracking-[0.35em] text-cyan-300/70">Baúl de Soluciones IA</p>
-          <h2 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-            Baúl de Soluciones IA
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
-            Herramientas premium que combinan diseño, claridad y potencia para construir soluciones IA con impacto real.
+        <div className="mb-8 max-w-3xl text-center mx-auto">
+          <p className="text-sm uppercase tracking-widest text-cyan-300/80">Baúl de Soluciones IA</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Baúl de Soluciones IA</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-slate-300">
+            Apps simples para usar IA en ventas, contenido, automatización y negocios.
           </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-[1.6fr_1fr] xl:gap-10">
-          <div className="relative overflow-hidden rounded-[40px] border border-white/10 bg-gradient-to-br from-slate-900 via-slate-950 to-[#050915] p-8 shadow-[0_40px_120px_rgba(0,0,0,0.4)] ring-1 ring-cyan-400/10">
-            <div className="absolute -right-16 top-10 h-48 w-48 rounded-full bg-cyan-500/10 blur-3xl" />
-            <div className="absolute -left-16 bottom-10 h-48 w-48 rounded-full bg-violet-500/10 blur-3xl" />
-            <div className="relative z-10 flex flex-col justify-between gap-8">
-              <div className="flex items-center justify-between">
-                <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200">
-                  {featured.badge}
-                </span>
-                <span className="rounded-full bg-white/5 px-3 py-1 text-xs font-medium tracking-[0.18em] text-slate-300">
-                  Featured
-                </span>
-              </div>
-              <div className="space-y-4">
-                <h3 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-                  {featured.title}
-                </h3>
-                <p className="max-w-xl text-base leading-8 text-slate-300">{featured.subtitle}</p>
-              </div>
+        <div className="mb-8 flex flex-wrap justify-center gap-3">
+          {categories.map((category) => (
+            <button
+              key={category}
+              type="button"
+              className="rounded-full border border-white/10 bg-slate-950/80 px-3 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-slate-300 transition duration-300 hover:border-cyan-400/40 hover:bg-white/10 hover:text-white"
+            >
+              {category}
+            </button>
+          ))}
+        </div>
 
-              <div className="grid gap-4 sm:grid-cols-2">
-                {[
-                  "Plantillas listos para usar",
-                  "Ejemplos de respuesta optimizados",
-                  "Guías visuales de adopción",
-                ].map((item) => (
-                  <div key={item} className="rounded-3xl border border-white/10 bg-white/5 p-4 text-sm text-slate-300 shadow-[0_12px_40px_rgba(0,0,0,0.18)]">
-                    {item}
-                  </div>
-                ))}
-              </div>
-
-              <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 p-6 shadow-[0_20px_80px_rgba(0,0,0,0.18)]">
-                <div className="mb-6 h-48 rounded-3xl bg-gradient-to-br from-cyan-500/20 via-violet-500/10 to-transparent shadow-[inset_0_0_80px_rgba(129,230,217,0.18)] transition duration-500 group-hover:scale-105" />
-                <div className="space-y-3">
-                  <p className="text-sm uppercase tracking-[0.28em] text-cyan-200/80">Solución destacada</p>
-                  <p className="text-sm leading-7 text-slate-300">Visual placeholder para la experiencia que será reemplazada por un diseño real.</p>
-                </div>
-              </div>
-
-              <button className="inline-flex items-center rounded-full bg-gradient-to-r from-cyan-400 via-sky-400 to-violet-500 px-6 py-3 text-sm font-semibold text-slate-950 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_80px_rgba(56,189,248,0.25)]">
-                Explorar herramienta
-              </button>
-            </div>
+        <div className="relative">
+          <div className="absolute left-0 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 rounded-full border border-white/10 bg-slate-950/80 text-white shadow-lg shadow-cyan-500/10 sm:flex items-center justify-center cursor-pointer hover:bg-slate-900/90"
+            onClick={() => scrollBy(-340)}
+          >
+            ‹
+          </div>
+          <div className="absolute right-0 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 rounded-full border border-white/10 bg-slate-950/80 text-white shadow-lg shadow-cyan-500/10 sm:flex items-center justify-center cursor-pointer hover:bg-slate-900/90"
+            onClick={() => scrollBy(340)}
+          >
+            ›
           </div>
 
-          <div className="grid gap-6">
-            {cards.map((card) => (
-              <article
-                key={card.title}
-                className="group overflow-hidden rounded-[32px] border border-white/10 bg-slate-950/80 p-6 shadow-[0_20px_80px_rgba(0,0,0,0.24)] transition duration-500 hover:-translate-y-1 hover:border-cyan-400/70 hover:shadow-[0_30px_120px_rgba(59,130,246,0.18)]"
-              >
-                <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-cyan-500/10 via-violet-500/10 to-transparent p-5">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(56,189,248,0.18),_transparent_35%)]" />
-                  <div className="relative z-10 h-32 overflow-hidden rounded-3xl bg-slate-900">
-                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 via-transparent to-violet-400/10 opacity-80" />
-                    <div className="absolute -left-8 top-8 h-20 w-20 rounded-full bg-cyan-400/15 blur-2xl" />
-                    <div className="absolute right-4 top-10 h-16 w-16 rounded-full bg-violet-500/10 blur-2xl" />
-                    <div className="relative flex h-full items-center justify-center text-xs uppercase tracking-[0.4em] text-slate-500">
-                      Imagen placeholder
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-6 flex items-center justify-between gap-4">
-                  <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-cyan-200">
-                    {card.badge}
-                  </span>
-                  <span className="rounded-full bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.25em] text-slate-300">{card.tag}</span>
-                </div>
-                <h3 className="mt-5 text-2xl font-semibold text-white transition-colors duration-300 group-hover:text-cyan-300">
-                  {card.title}
-                </h3>
-                <p className="mt-4 text-sm leading-7 text-slate-300">{card.description}</p>
-                <button className="mt-8 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm font-semibold text-cyan-100 transition duration-300 hover:border-cyan-300 hover:bg-cyan-400/10 hover:text-white">
-                  Explorar
-                </button>
-              </article>
+          <div
+            ref={carouselRef}
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            className="flex snap-x snap-mandatory justify-center gap-5 overflow-x-auto pb-4 pt-2 scroll-smooth"
+          >
+            {apps.map((app) => (
+              <AppCard key={app.id} app={app} />
             ))}
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function AppCard({ app }: { app: BaulApp }) {
+  return (
+    <article className="group relative min-w-[260px] max-w-[260px] snap-start cursor-pointer overflow-hidden rounded-3xl border border-white/6 bg-gradient-to-b from-slate-900/80 to-slate-950/95 p-0 shadow-[0_20px_70px_rgba(0,0,0,0.28)] transition duration-300 hover:z-20 hover:-translate-y-3 hover:scale-[1.06] hover:shadow-[0_45px_140px_rgba(56,189,248,0.18)] hover:border-cyan-400/30">
+      <div className="h-52 w-full flex-shrink-0 bg-gradient-to-r from-violet-700/20 via-cyan-500/18 to-transparent p-4">
+        <div className="h-full rounded-[2rem] bg-gradient-to-tr from-cyan-600/16 to-violet-600/10 shadow-inner flex items-center justify-center text-4xl text-cyan-200">
+          {app.icon}
+        </div>
+      </div>
+
+      <div className="p-5">
+        <div className="flex items-center justify-between gap-3">
+          <span className="text-[11px] uppercase tracking-[0.22em] text-slate-400">{app.category}</span>
+          <span className="rounded-full border border-white/10 bg-white/5 px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-300">{app.state}</span>
+        </div>
+        <h3 className="mt-3 text-lg font-semibold leading-6 text-white">{app.title}</h3>
+        <p className="mt-2 text-sm leading-6 text-slate-300">{app.description}</p>
+
+        <div className="mt-6 flex gap-3">
+          <button className="flex-1 rounded-2xl bg-gradient-to-r from-cyan-500 to-violet-500 px-4 py-3 text-sm font-semibold text-black shadow-lg shadow-cyan-500/12 transition duration-300 hover:-translate-y-0.5">
+            {app.primary}
+          </button>
+          <button className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-200 transition duration-300 hover:border-cyan-400/40 hover:text-white hover:bg-white/10">
+            {app.secondary}
+          </button>
+        </div>
+      </div>
+    </article>
   );
 }
 
