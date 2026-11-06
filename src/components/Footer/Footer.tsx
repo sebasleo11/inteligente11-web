@@ -2,7 +2,7 @@ import logoImg from '../../assets/logos/inteligente11-logo.png';
 
 function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#030712] text-slate-300">
+    <footer className="theme-footer border-t border-white/10 bg-[#030712] text-slate-300">
       <div className="mx-auto flex max-w-7xl flex-col gap-12 px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1.8fr_1fr_1fr_1fr]">
           <div className="space-y-4">
@@ -10,12 +10,12 @@ function Footer() {
               <img 
                 src={logoImg} 
                 alt="InteliGENTE11 Logo" 
-                className="h-[80px] w-auto object-contain"
+                className="theme-logo h-[80px] w-auto object-contain"
               />
             </div>
-            <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">La IA desmitificada.</h2>
+            <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">De la idea a la realidad digital.</h2>
             <p className="max-w-xl text-sm leading-7 text-slate-400">
-              Aprendé, construí y aplicá inteligencia artificial con proyectos reales, herramientas prácticas y contenido simple.
+              Productos digitales, soluciones a medida y conocimiento para llevar ideas a la práctica.
             </p>
           </div>
 
@@ -23,12 +23,16 @@ function Footer() {
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.26em] text-slate-400">Ecosistema</p>
             <ul className="space-y-3 text-sm text-slate-300">
               <li>
-                <a href="#baul" className="transition hover:text-cyan-300">Baúl IA</a>
+                <a href="/#areas" className="transition hover:text-cyan-300">Qué hago</a>
               </li>
               <li>
+                <a href="/#proyectos" className="transition hover:text-cyan-300">Proyectos</a>
               </li>
               <li>
-                <a href="#sistemas" className="transition hover:text-cyan-300">Sistemas</a>
+                <a href="/#sobre-mi" className="transition hover:text-cyan-300">Sobre mí</a>
+              </li>
+              <li>
+                <a href="/#contacto" className="transition hover:text-cyan-300">Contacto</a>
               </li>
             </ul>
           </div>
@@ -102,9 +106,7 @@ function Footer() {
                   Trabajar conmigo
                 </a>
               </li>
-              <li>
-                <a href="#" className="transition hover:text-cyan-300">Argentina</a>
-              </li>
+              <li className="text-slate-400">Argentina</li>
             </ul>
           </div>
         </div>
